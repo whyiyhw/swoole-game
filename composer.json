@@ -1,0 +1,20 @@
+{
+    "name": "13091/game",
+    "description": "a simple game",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "xuey",
+            "email": "15827543830@163.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "HideAndSeek/app/"
+        }
+    },
+    "require-dev": {
+        "eaglewu/swoole-ide-helper": "dev-master"
+    }
+}

@@ -1,20 +1,20 @@
+## composer  设置国内代理
+
+- `composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/`
+
 ## 静态检查
 - 对于laravel 5.7 php7.2 以上的版本
 - `composer require nunomaduro/phpinsights --dev`
 - `./vendor/bin/phpinsights`
 
-## 使用ide 提示工具
- 
-- `php artisan ide-help:generate` 主要生成 ide 提示
-- `php artisan ide-help:models` 生成 model 提示
-- `php artisan ide-help:meta` 生成 meta
+## 构建 dockerfile
 
 ```dockerfile
 FROM php:7.3-fpm
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV SWOOLE_VERSION 4.4.8
+ENV SWOOLE_VERSION 4.4.12
 
 # Timezone
 RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
@@ -59,8 +59,8 @@ RUN cd /etc/apt && cp sources.list ./sources.list.bak && rm sources.list && \
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer \
-    && composer self-update --clean-backups \
-    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer
+    && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer \
+    && composer self-update --clean-backups 
     
 # Redis extension
 RUN wget http://pecl.php.net/get/redis-${PHPREDIS_VERSION}.tgz -O /tmp/redis.tar.tgz \
@@ -94,10 +94,10 @@ EXPOSE 9000
 - 
     ```shell
     docker run -d \
-    -v /data/www/game/:/var/www/html \
-    -p 9002:9000 \
-    -p 9003:9501 \
-    -p 9004:9502 \
+    -v /data/www/swoole-game/:/var/www/html \
+    -p 9003:9000 \
+    -p 9004:9501 \
+    -p 9005:9502 \
     --name game73 --restart=always --privileged=true saas-laravel:v2
     ```
 - 对应 `nginx` 配置
@@ -105,7 +105,7 @@ EXPOSE 9000
 server {
     listen       8080;
     server_name 127.0.0.1;
-    root /data/www/sass/public;
+    root /data/www/ss/public;
 
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-XSS-Protection "1; mode=block";

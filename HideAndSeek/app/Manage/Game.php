@@ -26,6 +26,16 @@ class Game
         $this->players[$playerId] = $player;
     }
 
+    public function getPlayers()
+    {
+        return $this->players;
+    }
+
+    public function getMapData()
+    {
+        return $this->gameMap->getMapData();
+    }
+
     public function playerMove($playerId, $direction)
     {
         $player = $this->players[$playerId];

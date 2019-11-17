@@ -100,6 +100,9 @@ EXPOSE 9000
     -p 9005:9502 \
     --name game73 --restart=always --privileged=true saas-laravel:v2
     ```
+## redis  安装  redis
+
+- `docker run -d -p 6973:6379  --restart=always --name redis redis:latest redis-server`
 - 对应 `nginx` 配置
 ```shell
 server {
